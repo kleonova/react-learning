@@ -5,33 +5,22 @@ function CounterFn({ min, max }) {
     // magic сокрытие реализации
     // useState - is hooki - возвращает массив из объекта и функции изменения этого объекта
     let [counterValue, setCounterValue] = useState(min);
-    let [inputValue, setInputValue] = useState(min);
 
     console.log("init CounterFn");
 
-    // функция будет вызываться каждый раз при изменении компонента :(
-    function increnment() {
-        console.log("CounterFn: call increment function");
-
-        if(counterValue < max) {
-            setCounterValue(counterValue+1)
-        }
+    function applyCurrent(num){
+        console.log("applyCurrent", num);
+        setCounterValue(Math.max(min, Math.min(max, num)));
     }
 
-    function decrement() {
-        console.log("CounterFn: call decrement function");
-
-        if(counterValue > min) {
-            setCounterValue(counterValue-1);
-        }
-    }
-
+    let inc = () => applyCurrent(counterValue+1)
+    let dec = () => applyCurrent(counterValue-1)
+    
     function handleChange(event) {
-        let newValue = event.target.value;
+        let newValue = +event.target.value;
         console.log("handleChange ", newValue);
 
-        newValue = newValue > max ? max : newValue < min ? min : newValue;  
-        setCounterValue(newValue);
+        applyCurrent(newValue);
     }
 
     return (
@@ -42,8 +31,8 @@ function CounterFn({ min, max }) {
                 </label>
             </form>
 
-            <button type="button" onClick={ decrement }>-</button>
-            <button type="button" onClick={ increnment }>+</button>
+            <button type="button" onClick={ dec }>-</button>
+            <button type="button" onClick={ inc }>+</button>
         </div>
     );
 }

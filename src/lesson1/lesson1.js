@@ -16,7 +16,7 @@ const Container = () => (
             <h3>Функциональный компонент</h3>
             <p>После ввода хуков является приоритетным:)</p>
             <CounterFn min={1} max={5} />
-            <CounterFn min={15} max={23} />
+            <CounterFn min={3} max={30} />
         </div>
     </>
 );
