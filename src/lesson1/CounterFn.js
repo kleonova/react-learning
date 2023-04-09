@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
 
-function CounterFn({ min, max }) {
+function CounterFn({ min = 1, max = 100 }) {
     // magic сокрытие реализации
     // useState - is hooki - возвращает массив из объекта и функции изменения этого объекта
+    // присвоение будет отработано только 1 раз, так как сменится ???
     let [counterValue, setCounterValue] = useState(min);
-
-    console.log("init CounterFn");
 
     function applyCurrent(num){
         console.log("applyCurrent", num);
@@ -17,21 +16,16 @@ function CounterFn({ min, max }) {
     let dec = () => applyCurrent(counterValue-1)
     
     function handleChange(event) {
-        let newValue = +event.target.value;
+        let newValue = parseInt(event.target.value);
         console.log("handleChange ", newValue);
 
-        applyCurrent(newValue);
+        applyCurrent(isNaN(newValue) ? min : newValue);
     }
 
     return (
         <div>
-            <form>
-                <label>
-                    <input type="text" name="name" value={ counterValue } onChange={ handleChange } />
-                </label>
-            </form>
-
             <button type="button" onClick={ dec }>-</button>
+            <input type="text" name="name" value={ counterValue } onChange={ handleChange } />
             <button type="button" onClick={ inc }>+</button>
         </div>
     );
