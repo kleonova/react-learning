@@ -20,6 +20,7 @@ export default function() {
         setProducts(products.map(pr => (pr.id != productId) ? pr : ({...pr, cnt: newCnt }) ));
     };
 
+    let totalCard = () => products.reduce((sum, product) => sum + product.price * product.cnt, 0); 
 
     return (
     <>
@@ -46,12 +47,16 @@ export default function() {
                             <td>
                                 <MinMax value={productItem.cnt} max={productItem.rest} onChange={newCnt => setCnt(newCnt, productItem.id)} />    
                             </td>
-                            <td>???</td>
+                            <td>{ productItem.price * productItem.cnt }</td>
                         </tr>
                     ))
                 }                
             </tbody>
         </table>
+
+        <div>
+            TOTAL: {totalCard()}
+        </div>
     </>
     )
 }
