@@ -96,8 +96,8 @@ function getProductList () {
 			id: 105,
 			title: 'Huawei ZZ',
 			price: 15000,
-			rest: 8,
-			cnt: 1
+			rest: 300,
+			cnt: 10
 		}
 	];
 } 
