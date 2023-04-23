@@ -20,6 +20,10 @@ export default function() {
         setProducts(products.map(pr => (pr.id != productId) ? pr : ({...pr, cnt: newCnt }) ));
     };
 
+    let deleteProduct = (productsId) => {
+        setProducts(products.filter(({id}) => id != productsId));
+    };
+
     let totalCard = () => products.reduce((sum, product) => sum + product.price * product.cnt, 0); 
 
     return (
@@ -34,6 +38,7 @@ export default function() {
                     <th>Price</th>
                     <th>Count</th>
                     <th>Total</th>
+                    <th>Options</th>
                 </tr>
             </thead>
 
@@ -48,6 +53,9 @@ export default function() {
                                 <MinMax value={productItem.cnt} max={productItem.rest} onChange={newCnt => setCnt(newCnt, productItem.id)} />    
                             </td>
                             <td>{ productItem.price * productItem.cnt }</td>
+                            <td>
+                                <button onClick={() => deleteProduct(productItem.id)}>x</button>
+                            </td>
                         </tr>
                     ))
                 }                
