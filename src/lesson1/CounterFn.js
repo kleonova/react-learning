@@ -8,7 +8,6 @@ function CounterFn({ min = 1, max = 100 }) {
     let [counterValue, setCounterValue] = useState(min);
 
     function applyCurrent(num){
-        console.log("applyCurrent", num);
         setCounterValue(Math.max(min, Math.min(max, num)));
     }
 
@@ -17,8 +16,6 @@ function CounterFn({ min = 1, max = 100 }) {
     
     function handleChange(event) {
         let newValue = parseInt(event.target.value);
-        console.log("handleChange ", newValue);
-
         applyCurrent(isNaN(newValue) ? min : newValue);
     }
 

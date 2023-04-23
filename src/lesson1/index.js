@@ -2,7 +2,7 @@ import React from "react";
 import CounterClass from "./CounterClass";
 import CounterFn from "./CounterFn";
 
-const Container = () => (
+const ContainerLesson1 = () => (
     <>
         <h1>Lesson #1</h1>
         <hr />
@@ -21,4 +21,4 @@ const Container = () => (
     </>
 );
 
-export default Container;
+export default ContainerLesson1;
