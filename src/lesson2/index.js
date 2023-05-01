@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useMemo } from "react";
 import MinMax from "./MinMax";
 
 export default function() {
@@ -24,7 +24,8 @@ export default function() {
         setProducts(products.filter(({id}) => id != productsId));
     };
 
-    let totalCard = () => products.reduce((sum, product) => sum + product.price * product.cnt, 0); 
+    let totalCard = products.reduce((sum, product) => sum + product.price * product.cnt, 0);
+    // let totalCard = useMemo(() => products.reduce((sum, product) => sum + product.price * product.cnt, 0), [products]); 
 
     return (
     <>
@@ -63,7 +64,7 @@ export default function() {
         </table>
 
         <div>
-            TOTAL: {totalCard()}
+            TOTAL: {totalCard}
         </div>
     </>
     )
