@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     mode: "development",
@@ -11,7 +12,10 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "public", "index.html")
-        })
+        }),
+        new MiniCssExtractPlugin({
+			filename: 'main.css'
+		})
     ],
     module: {
         rules: [
@@ -19,7 +23,27 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: ["babel-loader"]
-            }
+            },
+            {
+				test: /\.module\.css$/,
+				use: [
+					MiniCssExtractPlugin.loader, 
+                    // опции для изоляции стилей: каждому классу будет добавлен хеш код
+                    // применится для всех файдов с именем module
+					{
+						loader: 'css-loader',
+						options: {
+							modules: {
+								localIdentName: '[local]__[sha1:hash:hex:7]'
+							}
+						}
+					}
+				]
+			},
+            {
+				test: /^((?!\.module).)*css$/,
+				use: [MiniCssExtractPlugin.loader, 'css-loader']
+			}
         ]
     },
     resolve: {
