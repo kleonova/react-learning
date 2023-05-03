@@ -1,0 +1,38 @@
+.modal {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.4);
+    width: 100vw;
+    height: 100vh;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    border: 1px solid lightgray;
+    border-radius: 7px;
+    background: white;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
+    font-weight: bold;
+}
+
+.main {
+    padding: 10px;
+}
+
+.footer {
+    display: none;
+    padding: 10px;
+    border-top: 1px solid lightgray;
+}

@@ -1,14 +1,20 @@
-import React, {useState} from "react";
-import MinMax from "../lesson3/MinMax";
+import { useState } from "react";
+import ModalCard from "../components/ModalCard";
 
-export default function() {
-    let [ value, setValue ] = useState(1);
+export default function() {    
+    let [ isOpen, setOpen ] = useState(false);
 
     return (
         <>
             <h1>Lesson #3</h1>
             <hr />
-            <MinMax max={100} value={value} onChange={newValue => setValue(newValue)}  />
+            <button onClick={() => setOpen(!isOpen)}>{isOpen ? 'Close modal' : 'Open modal' }</button>
+            { isOpen && 
+                <ModalCard 
+                    header='My modal'
+                    onClose={() => setOpen(false)} 
+                /> 
+            }
         </>
     );
 }
