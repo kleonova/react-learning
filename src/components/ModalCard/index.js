@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import useClickOutSide from '../../hooks/useClickOutside';
 import style from './style.module.css';
 
-function ModalCard ({ header, onClose }) {  
+function ModalCard ({ header, onClose, children }) {  
     const ref = useRef();
 
     useClickOutSide(ref, onClose);
@@ -14,7 +14,9 @@ function ModalCard ({ header, onClose }) {
                     {header}
                     <button onClick={() => onClose()}>X</button>
                 </div>
-                <div className={style.main}>main</div>
+                <div className={style.main}>
+                    { children }
+                </div>
                 <div className={style.footer}>footer</div>
             </div>
         </div>

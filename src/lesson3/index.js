@@ -13,7 +13,9 @@ export default function() {
                 <ModalCard 
                     header='My modal'
                     onClose={() => openModal(false)} 
-                /> 
+                >
+                    some text
+                </ModalCard> 
             }
         </>
     );
